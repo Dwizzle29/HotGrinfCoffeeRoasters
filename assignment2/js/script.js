@@ -37,7 +37,7 @@ function validate() {
     errMsg = "";
     document.getElementById("errorMsgSid").innerHTML = errMsg;
   }
-  /* Rule 2, check if the email contains an @ symbol */
+  //check email is formarted correctly
 
   if (!email.includes("@")) {
     errMsg = "Email must be a valid format eg. polly@gmail.com";
@@ -56,7 +56,7 @@ function validate() {
     document.getElementById("errorMsgPassword").innerHTML = errMsg;
   }
 
-  /* Rule 3, check if password and retype password are the same */
+  //Passwords are the same
 
   if (pwd1 != pwd2) {
     errMsg = "Passwords do not match.\n";
@@ -156,6 +156,7 @@ function watchForm() {
         paymentInfoGroup.classList.add("hidden");
       }
     });
+  //unhide and hides card options
   document.getElementById("cardOption").addEventListener("change", function () {
     const paymentInfoGroup = document.getElementById("cardMasterVisaID");
     if (
@@ -283,7 +284,7 @@ function validateOrder() {
     errMsg = "";
     document.getElementById("errorMsgPaymentType").innerHTML = errMsg;
   }
-
+  //payment type online calidation of card
   if (paymentType === "online") {
     var cardNumber = document.getElementById("cardNumber").value;
     var cvccvv = document.getElementById("cvc-cvv").value;
@@ -297,6 +298,7 @@ function validateOrder() {
       errMsg = "";
       document.getElementById("errorMsgCardOption").innerHTML = errMsg;
     }
+    //validation of mastercard and visa
     if (cardOption === "mastercard" || cardOption === "visa") {
       if (cardNumber === "" || !/^\d{15}$/.test(cardNumber)) {
         errMsg = "Card number needs to be 15 digits";
@@ -306,7 +308,7 @@ function validateOrder() {
         document.getElementById("errorMsgCardNumber").innerHTML = errMsg;
       }
     }
-
+    //vallidation of american express card
     if (cardOption === "americanExpress") {
       if (cardNumber === "" || !/^\d{16}$/.test(cardNumber)) {
         errMsg = "Card number needs to be 16 digits";
@@ -316,9 +318,8 @@ function validateOrder() {
         document.getElementById("errorMsgCardNumber").innerHTML = errMsg;
       }
     }
-    //validate address
 
-    //validate state
+    //validate CVV/CVC
     if (cvccvv === "" || !/^\d{3}$/.test(cardNumber)) {
       errMsg = "CVC or CVV has to be provided";
       document.getElementById("errorMsgCVC").innerHTML = errMsg;
@@ -326,7 +327,7 @@ function validateOrder() {
       errMsg = "";
       document.getElementById("errorMsgCVC").innerHTML = errMsg;
     }
-    //Postcode of 4 digit has to be provided
+    //Expiry of the format MM/YY
     if (expiry == "" || !/\d{1,2}\/\d{1,2}$/.test(expiry)) {
       errMsg = "Expiry must be MM/YY format";
       document.getElementById("errorMsgExpiry").innerHTML = errMsg;
@@ -335,6 +336,7 @@ function validateOrder() {
       document.getElementById("errorMsgExpiry").innerHTML = errMsg;
     }
   }
+  //if error message present form not submitted
   if (errMsg != "") {
     result = false;
   }
@@ -381,5 +383,4 @@ function init() {
   }
 }
 
-// Execute the initialization function once the window is loaded
 window.onload = init;

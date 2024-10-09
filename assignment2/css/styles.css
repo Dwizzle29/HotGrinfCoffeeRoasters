@@ -1,3 +1,8 @@
+/* GLobal */
+.hidden {
+  display: none;
+}
+
 body {
   font-family: new-science, sans-serif;
   background-color: #ecfff4;
@@ -79,6 +84,13 @@ main {
 }
 h1 {
   font-weight: 100;
+}
+.introduction {
+  display: grid;
+  grid-template-rows: auto;
+  margin-inline: auto;
+  place-items: center;
+  max-width: 1200px;
 }
 
 /* navbar styling */
@@ -365,18 +377,7 @@ fieldset {
   max-height: 400px;
   object-fit: cover;
 }
-/* GLobal */
-.hidden {
-  display: none;
-}
 
-.introduction {
-  display: grid;
-  grid-template-rows: auto;
-  margin-inline: auto;
-  place-items: center;
-  max-width: 1200px;
-}
 /* for Desktop view  */
 @media screen and (min-width: 600px) {
   .navbar {
