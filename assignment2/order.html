@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Web development" />
+    <meta name="keywords" content="Order Page" />
+    <meta name="author" content="Mikayla Dwyer" />
+    <!-- Link to style sheet -->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Link to Font style created using adobe fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/glc3eyx.css" />
+
+    <script src="js/script.js"></script>
+    <title>Hot Coffee Rosters Order</title>
+  </head>
+  <body>
+    <header>
+      <!-- Navigation Bar -->
+      <nav class="navbar">
+        <div class="logo-container">
+          <a href="index.html" class="logo">
+            <img
+              src="images/HGCRLogo.jpg"
+              alt=" Hot Grind Coffee Rosters logo"
+            />
+          </a>
+          <p>Hot Grind Coffee Rosters</p>
+        </div>
+
+        <div class="nav-menu">
+          <a href="index.html" id="home-page">Home</a>
+          <a href="order.html" id="order-page">Order</a>
+          <a href="register.html" id="register-page">Register</a>
+          <a href="features.html" id="features-page">Features</a>
+        </div>
+      </nav>
+    </header>
+    <!-- Skip to main content -->
+    <a href="#orderForm" class="skip-button">Skip to Main Content</a>
+    <!-- Image banner and introduction -->
+    <div class="banner-img">
+      <img
+        src="images/coffeeBeansBackground.jpg"
+        alt=" Coffee Beans Background"
+      />
+    </div>
+    <div class="introduction">
+      <h1 class="overlay-title">Order our Beans!</h1>
+      <p>
+        We have the best beans in town! We know that whatever you're after we
+        can find a coffee beans you will like.
+      </p>
+      <p>Want to try our beans?</p>
+      <h2>Order now below!</h2>
+    </div>
+
+    <!-- Order form -->
+    <main class="form-container">
+      <h1>Order here!</h1>
+      <!-- form action to mercury server -->
+      <form
+        id="orderForm"
+        method="post"
+        onsubmit=" return validateOrder()"
+        action="http://mercury.swin.edu.au/it000000/cos10005/regtest.php"
+      >
+        <!-- select item to order -->
+        <fieldset>
+          <legend>Item to order</legend>
+          <div class="form-select">
+            <label for="beansOrder">Select a Order Preference:</label>
+            <select id="beansOrder" name="beansOrder">
+              <option value="">Select</option>
+              <option value="sunriseBurst" onchange=" return watchForm()">
+                Sunrise Burst
+              </option>
+              <option value="dawnPatrol" onchange=" return watchForm()">
+                Dawn Patrol
+              </option>
+              <option value="nutshellHarmony" onchange=" return watchForm()">
+                Nutshell Harmony
+              </option>
+              <option value="morningMojo" onchange=" return watchForm()">
+                Morning Mojo
+              </option>
+            </select>
+
+            <span id="errorMsgBeansOrder" class="errorMsg"></span>
+          </div>
+          <fieldset id="beansOrderID" class="form-select hidden">
+            <legend>Select a Quantity</legend>
+            <label for="beansQuantity">Select how many bags:</label>
+            <select
+              id="beansQuantity"
+              name="beansQuantity"
+              class="select-inline"
+            >
+              <option value="">Select</option>
+              <option value="1">1 bag</option>
+              <option value="2">2 bags</option>
+              <option value="3">3 bags</option>
+            </select>
+            <span id="errorMsgBeansQuantity" class="errorMsg"></span>
+          </fieldset>
+        </fieldset>
+        <fieldset>
+          <legend>Billing Information</legend>
+          <fieldset>
+            <legend>Order Options</legend>
+            <div class="form-select">
+              <label for="orderType">Select your order preference:</label>
+              <select id="orderType" name="orderType">
+                <option value="">Select</option>
+                <option value="delivery" onchange=" return watchForm()">
+                  Delivery
+                </option>
+                <option value="pickup" onchange=" return watchForm()">
+                  Pick-up
+                </option>
+              </select>
+              <span id="errorMsgOrderType" class="errorMsg"></span>
+            </div>
+            <!-- shows when delivery is selected -->
+            <fieldset id="deliveryOptionID" class="form-group hidden">
+              <legend>Delivery Information</legend>
+              <div class="textinput">
+                <label for="address">Delivery Address:</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  placeholder="Enter delivery address"
+                />
+                <span id="errorMsgAddress" class="errorMsg"></span>
+              </div>
+              <div class="textinput">
+                <label for="state">State:</label>
+                <select id="state" name="state" class="select-inline">
+                  <option value="">Select</option>
+                  <option value="ACT">ACT</option>
+                  <option value="NSW">NSW</option>
+                  <option value="NT">NT</option>
+                  <option value="QLD">QLD</option>
+                  <option value="VIC">VIC</option>
+                  <option value="WA">WA</option>
+                </select>
+                <span id="errorMsgState" class="errorMsg"></span>
+              </div>
+              <div class="textinput">
+                <label for="postcode">Postcode:</label>
+                <input
+                  type="text"
+                  id="postcode"
+                  name="postcode"
+                  placeholder="Enter Postcode"
+                />
+                <span id="errorMsgPostcode" class="errorMsg"></span>
+              </div>
+            </fieldset>
+
+            <!-- shows when pickup order is selected -->
+            <fieldset id="pickupOptionID" class="form-group hidden">
+              <legend>Pick Up Information</legend>
+              <p id="pickupAddress">Pick up Address:</p>
+              <p>Our store is located at 101A Triabe Street, Hawthorn</p>
+            </fieldset>
+          </fieldset>
+          <!-- Billing information -->
+          <fieldset>
+            <legend>Billing Information</legend>
+            <div id="showBillingChoice" class="form-group hidden">
+              <label for="billingChoice">Same as Delivery Address</label>
+              <input
+                type="checkbox"
+                name="billingChoice"
+                id="billingChoice"
+                onchange="return copyDelivery()"
+              />
+            </div>
+            <div class="textinput">
+              <label for="billingAddress">Delivery Address:</label>
+              <input
+                type="text"
+                id="billingAddress"
+                name="billingAddress"
+                placeholder="Enter billing address"
+              />
+              <span id="errorMsgBilling" class="errorMsg"></span>
+            </div>
+            <div class="textinput">
+              <label for="billingPostcode">Postcode:</label>
+              <input
+                type="text"
+                id="billingPostcode"
+                name="billingPostcode"
+                placeholder="Enter Postcode"
+              />
+              <span id="errorMsgBillingPostcode" class="errorMsg"></span>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Contact Number</legend>
+            <div class="textinput">
+              <label for="phoneNumber">Phone Number:</label>
+              <input
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="Enter Phone Number"
+              />
+              <span id="errorMsgPhoneNumber" class="errorMsg"></span>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Receipt Information:</legend>
+            <div class="textinput">
+              <label for="email">Email:</label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                placeholder="Enter Email"
+              />
+              <span id="errorMsgEmail" class="errorMsg"></span>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Payment Information</legend>
+            <div class="form-select">
+              <label for="paymentType">Select a Payment Preference:</label>
+
+              <select id="paymentType" name="paymentType">
+                <option value="">Select</option>
+                <option value="online" onchange=" return watchForm()">
+                  Online
+                </option>
+                <option value="instore" onchange=" return watchForm()">
+                  In Store
+                </option>
+              </select>
+              <span id="errorMsgPaymentType" class="errorMsg"></span>
+            </div>
+
+            <!-- shows when delivery is selected -->
+            <fieldset id="onlinePaymentID" class="form-group hidden">
+              <legend>Payment Information</legend>
+
+              <label for="cardOption">Select Card Payment Method:</label>
+              <select id="cardOption" name="cardOption" class="select-inline">
+                <option value="">Select</option>
+                <option value="mastercard">MasterCard</option>
+                <option value="visa">Visa</option>
+                <option value="americanExpress">American Express</option>
+              </select>
+              <span id="errorMsgCardOption" class="errorMsg"></span>
+
+              <!-- When a card option is selected -->
+              <div id="cardMasterVisaID" class="hidden">
+                <div class="textinput">
+                  <label for="cardNumber">Card Number:</label>
+                  <input
+                    type="text"
+                    id="cardNumber"
+                    name="cardNumber"
+                    placeholder="Enter Card Number"
+                  />
+                  <span id="errorMsgCardNumber" class="errorMsg"></span>
+                </div>
+                <div class="textinput">
+                  <label for="cvc-cvv">CVC/CVV:</label>
+                  <input
+                    type="text"
+                    id="cvc-cvv"
+                    name="cvc-cvv"
+                    placeholder="Enter CVC/CVV"
+                  />
+                  <span id="errorMsgCVC" class="errorMsg"></span>
+                </div>
+                <div class="textinput">
+                  <label for="expiry">Expiry:</label>
+                  <input
+                    type="text"
+                    id="expiry"
+                    name="expiry"
+                    placeholder="Enter Expiry"
+                  />
+                  <span id="errorMsgExpiry" class="errorMsg"></span>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- shows when pickup order is selected -->
+            <fieldset id="paymentInStoreID" class="form-group hidden">
+              <legend>Pickup Information</legend>
+              <p id="paymentInstore">
+                You have selected to pay in store. Please ensure you have the
+                money ready when picking up to be able to recieve your item
+              </p>
+              <p>Our store is located at 101A Triabe Street, Hawthorn</p>
+            </fieldset>
+          </fieldset>
+        </fieldset>
+
+        <button type="submit" class="form-submit">Submit</button>
+      </form>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="images/HGCRLogo.jpg" alt=" Hot Grind Coffee Rosters logo" />
+        </div>
+
+        <div class="footer-item">
+          <h2>Sit Navigation</h2>
+          <ul>
+            <li><a href="index.html">Home and about us</a></li>
+            <li><a href="index.html">Order our Beans</a></li>
+            <li><a href="index.html">Register with Us</a></li>
+            <li><a href="index.html">Features of this site</a></li>
+          </ul>
+        </div>
+        <div class="footer-item">
+          <h2>Contact us</h2>
+          <ul>
+            <li><p>info@hotgrindcoffee.com.au</p></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
