@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Web development" />
+    <meta name="keywords" content="Register Page" />
+    <meta name="author" content="Mikayla Dwyer" />
+    <!-- Link to style sheet -->
+    <link href="css/styles.css" rel="stylesheet" />
+    <!-- Link to Font style created using adobe fonts -->
+    <link rel="stylesheet" href="https://use.typekit.net/glc3eyx.css" />
+    <title>Hot Coffee Rosters Register</title>
+  </head>
+  <body>
+    <header>
+      <!-- Navigation Bar -->
+      <nav class="navbar">
+        <div class="logo-container">
+          <a href="index.html" class="logo">
+            <img
+              src="images/HGCRLogo.jpg"
+              alt=" Hot Grind Coffee Rosters logo"
+            />
+          </a>
+          <p>Hot Grind Coffee Rosters</p>
+        </div>
+
+        <div class="nav-menu">
+          <a href="index.html" id="home-page">Home</a>
+          <a href="order.html" id="order-page">Order</a>
+          <a href="register.html" id="register-page">Register</a>
+          <a href="features.html" id="features-page">Features</a>
+        </div>
+      </nav>
+    </header>
+    <!-- skip button -->
+    <a href="#form-container" class="skip-button">Skip to Main Content</a>
+    <!-- Banner Images -->
+    <div class="banner-img">
+      <img
+        src="images/registerBackground.jpg"
+        alt=" Registers Page Background"
+      />
+    </div>
+    <div class="introduction">
+      <h1 class="overlay-title">Want to be apart of our loayltys program?</h1>
+      <p>
+        We have a loyalties program that is automatically applied whenever you
+        register with us.
+      </p>
+    </div>
+    <!-- Registration form -->
+    <main id="form-container" class="form-container">
+      <h1>Register here!</h1>
+      <!-- form action to mercury server -->
+      <form
+        id="regform"
+        method="post"
+        onsubmit="return validate"
+        action="http://mercury.swin.edu.au/it000000/cos10005/regtest.php"
+      >
+        <fieldset>
+          <legend>Register Information</legend>
+          <div class="textinput">
+            <label for="uname">Name*</label>
+            <input id="uname" type="text" name="uname" />
+            <span id="errorMsgUname" class="errorMsg"></span>
+          </div>
+          <div class="radioinput">
+            <fieldset class="gender">
+              <legend>Gender*</legend>
+              <input id="genm" type="radio" name="gender" value="M" />
+              <label for="genm">Male</label>
+              <input id="genf" type="radio" name="gender" value="F" />
+              <label for="genf">Female</label>
+              <input id="genn" type="radio" name="gender" value="NB" />
+              <label for="genn">Non Binary</label>
+              <span id="errorMsgGender"></span>
+            </fieldset>
+          </div>
+          <div class="textinput">
+            <label for="sid">Username*: </label>
+            <input id="sid" type="text" name="sid" />
+            <span id="errorMsgSid" class="errorMsg"></span>
+          </div>
+          <div class="textinput">
+            <label for="email">Email*: </label>
+            <input id="email" type="text" name="email" />
+            <span id="errorMsgEmail" class="errorMsg"></span>
+          </div>
+          <div class="textinput">
+            <label for="pwd1">Password*: </label>
+            <input id="pwd1" type="password" name="pwd1" />
+            <span id="errorMsgPassword" class="errorMsg"></span>
+          </div>
+          <div class="textinput">
+            <label for="pwd2">Confirm Password*: </label>
+            <input id="pwd2" type="password" name="pwd2" />
+            <span id="errorMsgMatchPassword" class="errorMsg"></span>
+          </div>
+          <div class="textinput">
+            <label for="address">Address*: </label>
+            <input id="address" type="text" name="address" />
+            <span id="errorMsgaddress" class="errorMsg"></span>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>More About You!</legend>
+
+          <div class="form-select">
+            <label for="food-this">What would you order at a cafe?</label>
+            <select name="food" id="food-this">
+              <option value="" id="food">Select</option>
+              <option value="crossiant" id="foodCrossiant">Crossiant</option>
+              <option value="brownie" id="foodBrownie">Brownie</option>
+              <option value="slice" id="foodSlice">Slice</option>
+            </select>
+          </div>
+          <fieldset class="checkbox-coffee">
+            <legend>Do you prefer hot or iced coffee?</legend>
+
+            <input
+              type="checkbox"
+              id="iced-coffee"
+              name="iced-coffee"
+              value="Iced Coffee"
+              class="checkbox"
+            /><label for="iced-coffee">Iced Coffee</label>
+
+            <input
+              type="checkbox"
+              id="hot-coffee"
+              name="hot-coffee"
+              value="Hot Coffee"
+              class="checkbox"
+            /><label for="hot-coffee">Hot Coffee</label>
+          </fieldset>
+          <p class="warning">* these answers are required to continue</p>
+        </fieldset>
+        <button type="submit" class="form-submit">Submit</button>
+      </form>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="images/HGCRLogo.jpg" alt=" Hot Grind Coffee Rosters logo" />
+        </div>
+
+        <div class="footer-item">
+          <h2>Sit Navigation</h2>
+          <ul>
+            <li><a href="index.html">Home and about us</a></li>
+            <li><a href="index.html">Order our Beans</a></li>
+            <li><a href="index.html">Register with Us</a></li>
+            <li><a href="index.html">Features of this site</a></li>
+          </ul>
+        </div>
+        <div class="footer-item">
+          <h2>Contact us</h2>
+          <ul>
+            <li><p>info@hotgrindcoffee.com.au</p></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

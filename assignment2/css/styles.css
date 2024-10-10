@@ -93,6 +93,14 @@ h1 {
   max-width: 1200px;
 }
 
+.container {
+  max-width: 1200px;
+  display: grid;
+  grid-template-rows: 1fr;
+  place-content: center;
+  margin-inline: auto;
+}
+
 /* navbar styling */
 .navbar {
   display: flex;
@@ -156,14 +164,6 @@ h1 {
   margin-block-start: 105px;
 }
 
-/* Global styling */
-.container {
-  max-width: 1200px;
-  display: grid;
-  grid-template-rows: 1fr;
-  place-content: center;
-  margin-inline: auto;
-}
 /* Home page styling */
 .home-section {
   display: grid;
